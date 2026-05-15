@@ -1,0 +1,64 @@
+# Agent Instructions Extension Configuration
+# Maps tech stack patterns → engineer personas and domain skills.
+# Paths reference the canonical .agents/ directory (single source of truth).
+
+# --- Engineer Agent Selection ---
+# pattern: Regex matched against spec.md / plan.md content
+# engineer: Path relative to .agents/system/engineers/
+# sub_agents: Optional child agents for multi-agent coordination (root architect pattern)
+
+engineer_selection:
+  tech_stacks:
+    # Multi-agent: Root architect delegates to specialized sub-agents
+    - pattern: "Flutter.*NestJS|NestJS.*Flutter|flutter.*nestjs"
+      engineer: "system/engineers"
+      sub_agents:
+        backend: "backend/DDD"
+        frontend: "frontend/flutter-DDD"
+
+    # Backend specializations
+    - pattern: "NestJS|Prisma|TypeORM|PostgreSQL.*Nest"
+      engineer: "backend/DDD"
+    - pattern: "microservice|distributed|event.*driven|saga|message.*broker|kafka"
+      engineer: "backend/full"
+
+    # Frontend specializations
+    - pattern: "React.*Firebase|Firestore.*React|react.*firebase"
+      engineer: "frontend/typescript-react-firebase"
+    - pattern: "React.*Ant Design|Ant.*Table|admin.*dashboard|management.*panel"
+      engineer: "frontend/web-DDD"
+    - pattern: "React|Next.js|Vite.*React|TypeScript.*React"
+      engineer: "frontend/react/coding"
+    - pattern: "Flutter|Dart|Bloc|Cubit|GetIt|GoRouter"
+      engineer: "frontend/flutter-DDD"
+    - pattern: "Vue|Nuxt|Angular|Svelte|general.*frontend"
+      engineer: "frontend/full"
+
+  # Fallback if no pattern matches
+  default_engineer: "backend/full"
+
+# --- Skill Selection ---
+# Each skill is a SYSTEM.md in .agents/skills/system_skills/<name>/SKILL.md
+# Loaded into AI context when the pattern matches spec/plan content.
+
+skill_mappings:
+  - pattern: "oauth|login.*google|sign.*in.*with|sso|identity.*provider|OAuth2|JWT.*auth"
+    skills: ["oauth"]
+  - pattern: "gemini|genai|llm|ai.*chat|text.*generat|google.*ai|model.*gemini"
+    skills: ["gemini-api", "gemini-connect"]
+  - pattern: "google.*map|location.*picker|place.*api|map.*embed|routes.*api"
+    skills: ["google-maps-platform"]
+  - pattern: "drive|google.*docs|google.*sheets|google.*gmail|calendar.*api|workspace"
+    skills: ["workspace-integration"]
+  - pattern: "shadcn|shadcn/ui|radix.*ui|reusable.*component"
+    skills: ["shadcn"]
+  - pattern: "websocket|realtime|live.*update|collaborat|socket.*io|event.*stream"
+    skills: ["realtime-guidelines"]
+  - pattern: "image.*generat|dalle|stable.*diffus|illustrat|hero.*banner|icon.*generat"
+    skills: ["image-generation"]
+  - pattern: "design|ui.*ux|styling|theme|aesthetic|typography|color.*palette|layout.*recipe"
+    skills: ["design-guidelines"]
+  - pattern: "github.*import|import.*github|migrat.*repo|ai.*studio.*import"
+    skills: ["github-import-migration"]
+  - pattern: "focus.*mode|element.*select|css.*selector|ui.*element"
+    skills: ["focus-mode"]

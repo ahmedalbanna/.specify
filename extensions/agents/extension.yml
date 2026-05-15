@@ -1,0 +1,34 @@
+schema_version: "1.0"
+
+extension:
+  id: agents
+  name: "Agent Instructions Extension"
+  version: "1.0.0"
+  description: "Specialized engineer personas and domain skills loaded into AI context during workflow phases."
+  author: spec-kit-core
+
+requires:
+  speckit_version: ">=0.8.0"
+  tools: []
+
+provides:
+  commands:
+    - name: speckit.agent.select
+      file: commands/speckit.agent.select.md
+      description: "Detect tech stack, select matching engineer agent, and load relevant skills"
+
+config:
+  - name: "agents-config.yml"
+    template: null
+    description: "Maps tech stack patterns to engineer agent paths and skill files"
+
+hooks:
+  before_plan:
+    command: speckit.agent.select
+    optional: false
+    description: "Select and load engineer agent context before planning"
+  before_implement:
+    command: speckit.agent.select
+    optional: true
+    prompt: "Load relevant coding agent context before implementation?"
+    description: "Load coding agent instructions before implementation"
