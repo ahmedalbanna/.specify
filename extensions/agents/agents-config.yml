@@ -70,3 +70,7 @@ skill_mappings:
     skills: ["dart-logic"]
   - pattern: "mobile.*app|mobile.*screen|platform.*channel|push.*notification|app.*store|play.*console"
     skills: ["flutter-design", "dart-logic"]
+
+  # Google Stitch design skill
+  - pattern: "stitch|design.*ui|ui.*design|prototype|mockup|wireframe|screen.*generat|design.*token|design.*system"
+    skills: ["stitch-design"]
