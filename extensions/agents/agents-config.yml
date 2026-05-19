@@ -13,12 +13,12 @@ engineer_selection:
     - pattern: "Flutter.*NestJS|NestJS.*Flutter|flutter.*nestjs"
       engineer: "system/engineers"
       sub_agents:
-        backend: "backend/DDD"
-        frontend: "frontend/flutter-DDD"
+        backend: "backend/full"
+        frontend: "frontend/web-DDD"
 
     # Backend specializations
     - pattern: "NestJS|Prisma|TypeORM|PostgreSQL.*Nest"
-      engineer: "backend/DDD"
+      engineer: "backend/full"
     - pattern: "microservice|distributed|event.*driven|saga|message.*broker|kafka"
       engineer: "backend/full"
 
@@ -30,9 +30,9 @@ engineer_selection:
     - pattern: "React|Next.js|Vite.*React|TypeScript.*React"
       engineer: "frontend/react/coding"
     - pattern: "Flutter|Dart|Bloc|Cubit|GetIt|GoRouter"
-      engineer: "frontend/flutter-DDD"
+      engineer: "frontend/web-DDD"
     - pattern: "Vue|Nuxt|Angular|Svelte|general.*frontend"
-      engineer: "frontend/full"
+      engineer: "frontend/react/coding"
 
   # Fallback if no pattern matches
   default_engineer: "backend/full"
@@ -45,20 +45,28 @@ skill_mappings:
   - pattern: "oauth|login.*google|sign.*in.*with|sso|identity.*provider|OAuth2|JWT.*auth"
     skills: ["oauth"]
   - pattern: "gemini|genai|llm|ai.*chat|text.*generat|google.*ai|model.*gemini"
-    skills: ["gemini-api", "gemini-connect"]
+    skills: ["gemini_api", "gemini_connect"]
   - pattern: "google.*map|location.*picker|place.*api|map.*embed|routes.*api"
-    skills: ["google-maps-platform"]
+    skills: ["google_maps_platform"]
   - pattern: "drive|google.*docs|google.*sheets|google.*gmail|calendar.*api|workspace"
-    skills: ["workspace-integration"]
+    skills: ["workspace_integration"]
   - pattern: "shadcn|shadcn/ui|radix.*ui|reusable.*component"
     skills: ["shadcn"]
   - pattern: "websocket|realtime|live.*update|collaborat|socket.*io|event.*stream"
-    skills: ["realtime-guidelines"]
+    skills: ["realtime_guidelines"]
   - pattern: "image.*generat|dalle|stable.*diffus|illustrat|hero.*banner|icon.*generat"
-    skills: ["image-generation"]
+    skills: ["image_generation"]
   - pattern: "design|ui.*ux|styling|theme|aesthetic|typography|color.*palette|layout.*recipe"
-    skills: ["design-guidelines"]
+    skills: ["design_guidelines"]
   - pattern: "github.*import|import.*github|migrat.*repo|ai.*studio.*import"
-    skills: ["github-import-migration"]
+    skills: ["github_import_migration"]
   - pattern: "focus.*mode|element.*select|css.*selector|ui.*element"
-    skills: ["focus-mode"]
+    skills: ["focus_mode"]
+
+  # Flutter & Dart specific skills
+  - pattern: "flutter|widget|scaffold|materialapp|cupertino|go_router|sliver|bloc.*builder|theme.*data|mediaquery"
+    skills: ["flutter-design"]
+  - pattern: "dart|isolate|freezed|json_serializable|record.*type|sealed.*class|either.*pattern|getit|stream|future.*flutter"
+    skills: ["dart-logic"]
+  - pattern: "mobile.*app|mobile.*screen|platform.*channel|push.*notification|app.*store|play.*console"
+    skills: ["flutter-design", "dart-logic"]
