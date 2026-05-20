@@ -1,50 +1,67 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+# MVP Project Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. API-First Design
+Every feature starts with backend API design. Define endpoints, DTOs, and response contracts before building frontend. Backend and frontend teams agree on API contracts via documentation before implementation begins.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Feature-First Architecture
+Code is organized by feature, not by technical layer. Each feature module (auth, products, orders) is self-contained with its own entities, services, controllers, and DTOs. Features must be independently testable and deployable.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Spec-Driven Development (NON-NEGOTIABLE)
+Every feature must follow the Speckit workflow: Specification → Plan → Tasks → Implement. No code is written without an approved spec and plan. The `/speckit.specify`, `/speckit.plan`, and `/speckit.tasks` commands are mandatory gates.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Contract Consistency
+API contracts must be identical between backend and frontend. Field names, types, and response shapes are defined once and shared. Any contract change requires updating both sides and running `/workflow.sync.contracts`.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. Security Baseline
+All endpoints require authentication by default (opt-out, not opt-in). JWT with refresh token flow. Input validation via class-validator on every DTO. Rate limiting on auth endpoints. CORS configured explicitly. No secrets in code — environment variables only.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## Additional Constraints
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+### Technology Stack
+- Backend: NestJS + TypeScript + Prisma + PostgreSQL
+- Admin Dashboard: React + TypeScript + Vite + Ant Design + TanStack Query
+- Mobile App: Flutter + Clean Architecture + BLoC + GoRouter + GetIt
+- Alternative Mobile: React Native (Expo) + TypeScript + TanStack Query
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+### Code Quality
+- TypeScript strict mode — no `any`
+- All API responses follow standard shape: `{ success, data, message?, meta? }`
+- Prisma ORM only — no raw SQL unless explicitly justified
+- BLoC/Cubit for Flutter state, TanStack Query for React server state
+- Naming conventions: lowercase modules, kebab-case endpoints, PascalCase screens
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+### Testing Requirements
+- Unit tests for all services and use cases
+- E2E tests for critical user flows (auth, core CRUD)
+- Coverage target: ≥80% on critical paths
+- Tests must pass before merging any feature
+
+## Development Workflow
+
+### Feature Lifecycle
+1. `/speckit.specify` — Write user-focused specification (no tech details)
+2. `/speckit.plan` — Create technical implementation plan
+3. `/speckit.tasks` — Break into actionable, ordered tasks
+4. `/speckit.review` — Cross-artifact consistency check
+5. `/speckit.implement` — Execute tasks and generate code
+6. Test → Review → Merge
+
+### Code Review Standards
+- All PRs must reference a spec and plan
+- API contract changes require explicit approval
+- No bypassing Speckit workflow for production features
+- Security-sensitive changes require `@security-guard` review
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution supersedes all other development practices. Amendments require:
+1. Explicit proposal with rationale
+2. Impact analysis on existing features
+3. Migration plan if breaking existing conventions
+4. Team consensus before adoption
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+All agents and workflows must verify compliance with these principles.
+
+**Version**: 1.0.0 | **Ratified**: 2026-05-20 | **Last Amended**: 2026-05-20
