@@ -75,6 +75,24 @@ skill_mappings:
   - pattern: "stitch|design.*ui|ui.*design|prototype|mockup|wireframe|screen.*generat|design.*token|design.*system"
     skills: ["stitch-design"]
 
-  # PlantUML diagram skill
-  - pattern: "plantuml|uml.*diagram|sequence.*diagram|class.*diagram|er.*diagram|architecture.*diagram|flowchart|swimlane|component.*diagram|deployment.*diagram"
+  # PlantUML diagram skill — base always loaded, type-specific sub-skills added by pattern
+  - pattern: "plantuml|uml.*diagram|flowchart|swimlane"
     skills: ["plantuml-design"]
+  - pattern: "sequence.*diagram|api.*flow|request.*response|interaction.*diagram"
+    skills: ["plantuml-design"]
+    note: "اقرأ types/sequence.md لـ syntax"
+  - pattern: "class.*diagram|er.*diagram|er.*d|entity.*relation|data.*model|prisma.*schema"
+    skills: ["plantuml-design"]
+    note: "اقرأ types/class-erd.md لـ syntax"
+  - pattern: "dfd|context.*diagram|data.*flow|level.*0|level.*1|system.*context"
+    skills: ["plantuml-design"]
+    note: "اقرأ types/dfd.md لـ syntax"
+  - pattern: "use.*case|activity.*diagram|state.*diagram|state.*machine|business.*workflow|behavioral.*diagram"
+    skills: ["plantuml-design"]
+    note: "اقرأ types/behavioral.md لـ syntax"
+  - pattern: "component.*diagram|deployment.*diagram|architecture.*diagram|module.*diagram|structural.*diagram"
+    skills: ["plantuml-design"]
+    note: "اقرأ types/structural.md لـ syntax"
+  - pattern: "gantt|mindmap|timing.*diagram|json.*diagram|yaml.*diagram|schedule.*chart"
+    skills: ["plantuml-design"]
+    note: "اقرأ types/special.md لـ syntax"
