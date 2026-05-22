@@ -1,3 +1,9 @@
+<!--
+  NOTE: This is a reference template. The active constitution for this project
+  is at ../memory/constitution.md (already filled with project-specific principles).
+  Use this template only as a guide when creating new principles or amending the constitution.
+-->
+
 # [PROJECT_NAME] Constitution
 <!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
 

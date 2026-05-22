@@ -14,6 +14,9 @@ This extension provides Git operations as an optional, self-contained module. It
 
 ## Commands
 
+Git commands are defined in `.opencode/commands/speckit.git.*.md` (single source of truth).
+The extension.yml references these files via relative paths.
+
 | Command | Description |
 |---------|-------------|
 | `speckit.git.initialize` | Initialize a Git repository with a configurable commit message |

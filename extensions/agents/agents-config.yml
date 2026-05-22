@@ -13,12 +13,13 @@ engineer_selection:
     - pattern: "Flutter.*NestJS|NestJS.*Flutter|flutter.*nestjs"
       engineer: "system/engineers"
       sub_agents:
-        backend: "backend/full"
+        backend: "backend/nestjs"
         frontend: "frontend/web-DDD"
+        mobile: "mobile"
 
     # Backend specializations
     - pattern: "NestJS|Prisma|TypeORM|PostgreSQL.*Nest"
-      engineer: "backend/full"
+      engineer: "backend/nestjs"
     - pattern: "microservice|distributed|event.*driven|saga|message.*broker|kafka"
       engineer: "backend/full"
 
@@ -29,13 +30,15 @@ engineer_selection:
       engineer: "frontend/web-DDD"
     - pattern: "React|Next.js|Vite.*React|TypeScript.*React"
       engineer: "frontend/react/coding"
+
+    # Mobile specializations
     - pattern: "Flutter|Dart|Bloc|Cubit|GetIt|GoRouter"
-      engineer: "frontend/web-DDD"
+      engineer: "mobile"
     - pattern: "Vue|Nuxt|Angular|Svelte|general.*frontend"
       engineer: "frontend/react/coding"
 
   # Fallback if no pattern matches
-  default_engineer: "backend/full"
+  default_engineer: "backend/nestjs"
 
 # --- Skill Selection ---
 # Each skill is a SYSTEM.md in .agents/skills/system_skills/<name>/SKILL.md

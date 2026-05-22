@@ -18,6 +18,36 @@
       },
       "registered_skills": [],
       "installed_at": "2026-05-13T19:32:41.689216+00:00"
+    },
+    "agents": {
+      "version": "1.0.0",
+      "source": "local",
+      "manifest_hash": "sha256:agents-config-yaml-hash",
+      "enabled": true,
+      "priority": 5,
+      "registered_commands": {
+        "opencode": [
+          "speckit.agent.select"
+        ]
+      },
+      "registered_skills": [
+        "oauth",
+        "gemini_api",
+        "gemini_connect",
+        "google_maps_platform",
+        "workspace_integration",
+        "shadcn",
+        "realtime_guidelines",
+        "image_generation",
+        "design_guidelines",
+        "github_import_migration",
+        "focus_mode",
+        "flutter-design",
+        "dart-logic",
+        "stitch-design",
+        "plantuml-design"
+      ],
+      "installed_at": "2026-05-13T19:32:41.721347+00:00"
     }
   }
 }
